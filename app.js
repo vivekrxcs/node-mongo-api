@@ -1,7 +1,8 @@
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+//var logger = require("morgan");
+const morgan = require('morgan')
 require("dotenv").config();
 var indexRouter = require("./routes/index");
 var apiRouter = require("./routes/api");
@@ -10,6 +11,7 @@ var cors = require("cors");
 
 // DB connection
 var MONGODB_URL = process.env.MONGODB_URL;
+
 var mongoose = require("mongoose");
 mongoose.connect(MONGODB_URL, { useNewUrlParser: true, useUnifiedTopology: true }).then(() => {
 	//don't show the log when it is test
@@ -29,7 +31,7 @@ var app = express();
 
 //don't show the log when it is test
 if(process.env.NODE_ENV !== "test") {
-	app.use(logger("dev"));
+	//app.use(morgan('combined'));//dev
 }
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

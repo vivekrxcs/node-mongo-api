@@ -40,7 +40,7 @@ exports.register = [
 	sanitizeBody("email").escape(),
 	sanitizeBody("password").escape(),
 	// Process request after validation and sanitization.
-	(req, res) => {
+	(req, res) => {		
 		try {
 			// Extract the validation errors from a request.
 			const errors = validationResult(req);
